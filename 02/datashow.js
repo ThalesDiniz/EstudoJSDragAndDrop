@@ -10,6 +10,7 @@ export default class DataShow {
 
   // Flag para indicar se ocorreu um drag/drop
   #dropSuccess = false;
+  #activeUser = null;
 
   #HTMLid = null;
 
@@ -22,8 +23,8 @@ export default class DataShow {
     return this.#dropSuccess;
   }
 
-  set dropSuccess(value){
-    this.#dropSuccess = value;
+  get activeUser(){
+    return this.#activeUser;
   }
 
   handleDragEnter(item, event) {
@@ -66,6 +67,7 @@ export default class DataShow {
     parentTable.removeChild(divTableData);
     parentTable.appendChild(table);
 
+    this.#activeUser = user.name;
     this.#dropSuccess = true;
 
     this.#counter--;

@@ -27,28 +27,17 @@ export default class DataBox {
 
   handleDragEnd(item, HTMLitems, event) {
     event.preventDefault();
-    let activeCard = null;
-    let tempActiveCard = null;
 
     HTMLitems.forEach(element => {
-      if (element.style.opacity != '1') {
-        tempActiveCard = element;
-        if (item !== element) { activeCard = element; }
-      }
       element.style.opacity = '1';
     });
 
-    if (activeCard === null && tempActiveCard !== null) {
-      activeCard = tempActiveCard;
-    }
-
     if (this.#ds.dropSuccess) {
-      event.target.style.opacity = '0.4'; 
-      this.#ds.dropSuccess = false;
-      return;
-    }
-    if (activeCard !== null) {
-      activeCard.style.opacity = '0.4';
+      HTMLitems.forEach(element => {
+        if (element.querySelector('p.text-name').innerHTML === this.#ds.activeUser) {
+          element.style.opacity = '0.4';
+        }
+      });
     }
   }
 
