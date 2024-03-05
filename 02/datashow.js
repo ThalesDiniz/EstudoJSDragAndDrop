@@ -1,5 +1,4 @@
 // Classe datashow
-
 import { buildCardShow, buildTable } from "./utils.js";
 
 export default class DataShow {
@@ -8,11 +7,23 @@ export default class DataShow {
   // A variaavel counter força que o .remove seja executado apenas 
   // quando o mouse sair do do objeto html certo.
   #counter = 0;
+
+  // Flag para indicar se ocorreu um drag/drop
+  #dropSuccess = false;
+
   #HTMLid = null;
 
   constructor(HTMLid) {
     this.#HTMLid = HTMLid;
     this.#linkObject();
+  }
+
+  get dropSuccess(){
+    return this.#dropSuccess;
+  }
+
+  set dropSuccess(value){
+    this.#dropSuccess = value;
   }
 
   handleDragEnter(item, event) {
@@ -33,9 +44,9 @@ export default class DataShow {
     event.preventDefault(); // prevent default to allow drop
   };
 
-  handleDrop(item, event) {
+  handleDrop(event) {
     event.preventDefault(); // prevent default action (open as a link for some elements)
-    const hiddenInput = event.dataTransfer.getData("text");
+    const hiddenInput = event.dataTransfer.getData("userinfo");
     const user = JSON.parse(hiddenInput);
     
     // Preparando card 'dropavel'
@@ -55,15 +66,12 @@ export default class DataShow {
     parentTable.removeChild(divTableData);
     parentTable.appendChild(table);
 
+    this.#dropSuccess = true;
+
     this.#counter--;
     if (this.#counter === 0) {
       this.#limparCartao(event);
     }
-
-    /* 
-    MOSTRAR DADOS NO ESPAÇO GRANDE
-    
-    */
   }
 
   #limparCartao(event) {
@@ -77,9 +85,6 @@ export default class DataShow {
     HTMLitem.addEventListener("dragenter", this.handleDragEnter.bind(this, HTMLitem));
     HTMLitem.addEventListener("dragleave", this.handleDragLeave.bind(this, HTMLitem));
     HTMLitem.addEventListener("dragover", this.handleDragOver.bind(this));
-    HTMLitem.addEventListener("drop", this.handleDrop.bind(this, HTMLitem));
+    HTMLitem.addEventListener("drop", this.handleDrop.bind(this));
   }
 }
-
-// Custom event
-// https://stackoverflow.com/questions/68564882/how-do-you-do-custom-events-on-a-javascript-es6-class

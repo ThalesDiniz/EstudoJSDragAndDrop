@@ -30,6 +30,6 @@ function CriarCartoes(users) {
 
 document.addEventListener('DOMContentLoaded', (event) => {
   CriarCartoes(users)
-  const db = new DataBox(document.querySelectorAll('#container .box'));
   const ds = new DataShow('droptarget');
+  const db = new DataBox(ds, document.querySelectorAll('#container .box'));
 });

@@ -2,10 +2,17 @@
 
 export default class DataBox {
 
-  constructor(HTMLitems) {
+  #ds = null;
+
+  constructor(ds, HTMLitems) {
+    this.#ds = ds;
     HTMLitems.forEach((item) => {
       item.addEventListener('dragstart', this.handleDragStart.bind(this, item));
       item.addEventListener('dragend', this.handleDragEnd.bind(this, item, HTMLitems));
+    });
+
+    HTMLitems.forEach(element => {
+      element.style.opacity = '1';
     });
   }
 
@@ -15,17 +22,34 @@ export default class DataBox {
     event.dataTransfer.clearData();
 
     const json = this.#MountJsonData(event.target.querySelectorAll('.user-info')[0]);
-    event.dataTransfer.setData("text/plain", json);
+    event.dataTransfer.setData("userinfo", json);
   }
 
   handleDragEnd(item, HTMLitems, event) {
     event.preventDefault();
+    let activeCard = null;
+    let tempActiveCard = null;
+
     HTMLitems.forEach(element => {
-      element.style.opacity = '1';
-      if (element === item) {
-        item.style.opacity = '0.4';
+      if (element.style.opacity != '1') {
+        tempActiveCard = element;
+        if (item !== element) { activeCard = element; }
       }
+      element.style.opacity = '1';
     });
+
+    if (activeCard === null && tempActiveCard !== null) {
+      activeCard = tempActiveCard;
+    }
+
+    if (this.#ds.dropSuccess) {
+      event.target.style.opacity = '0.4'; 
+      this.#ds.dropSuccess = false;
+      return;
+    }
+    if (activeCard !== null) {
+      activeCard.style.opacity = '0.4';
+    }
   }
 
   #MountJsonData(hiddenInput) {
