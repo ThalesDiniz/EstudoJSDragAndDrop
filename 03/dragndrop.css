@@ -1,0 +1,7 @@
+.task-item {
+  cursor: move;
+}
+
+.dragover {
+  transform: scale(1.1, 1.1);
+}

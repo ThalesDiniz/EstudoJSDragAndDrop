@@ -1,0 +1,114 @@
+/* * {border: 1px solid red;} */
+
+/* parte 01 */
+
+body {
+  /* user-select: none; */
+  font-family: Helvetica, "Trebuchet MS", Verdana, sans-serif;
+}
+
+.content{
+  max-width: 50em;
+  width: 100%;
+  margin: auto;
+}
+
+.header {
+  background-color: #4e5872;
+  padding: 1em;
+  padding-top: 2em;
+}
+
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+.pill {
+  display: flex;
+  border-radius: 1.5em;
+  padding-left: 1.25em;
+  background-color: #737b91;
+  font-size: 1.5em;
+}
+
+.pill-item {
+  color: white;
+  margin: 0.5em;
+}
+
+.barra {
+  padding-right: 0.9em;
+  border-right: 0.125em solid white;
+}
+
+.space-top {
+  margin: 2em 0 1em 0;
+}
+
+/* parte 02 */
+
+/* .main {} */
+
+.task {
+  margin: 1em 0;
+  color: black;
+  background-color: white;
+  border: 0.1em solid #9aaded;
+  border-radius: 1.5em;
+}
+
+.task-header {
+  margin: 2em 0;
+  display: flex;
+}
+
+.task-input {
+  flex: 1;
+  color: black;
+  padding: 1em;
+  font-size: 1.2em;
+  width: 100%;
+  background-color: #f5f7fd;
+  border: none;
+  border-radius: 1.2em 0 0 1.2em;
+}
+
+.task-input:focus {
+  outline: none;
+}
+
+.task-button {
+  display: inline-block;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: #f5f7fd;
+
+  cursor: pointer;
+  border-radius: 0 1.5em 1.5em 0;
+}
+
+.task-draggable {
+  background-color: #ced8f6;
+}
+
+.task-draggable:hover {
+  background-color: #9aaded;
+  cursor: grab;
+  /* cursor: grabbing; */
+}
+
+.task-text {
+  display: inline-block;
+  color: black;
+  margin: 1em;
+}

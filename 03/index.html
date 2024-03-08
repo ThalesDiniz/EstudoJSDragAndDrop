@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' href='./reset.css'>
+  <link rel='stylesheet' type='text/css' href='./style.css'>
+  <link rel='stylesheet' type='text/css' href='./dragndrop.css'>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="header">
+      <div class="content">
+        <ul class="pill">
+          <li class="pill-item barra">
+            <a href="../">Voltar</a>
+          </li>
+
+          <li class="pill-item">
+            <a class="text-link" href="https://github.com/ThalesDiniz/EstudoJSDragAndDrop"> Fontes (pasta 03) </a>
+          </li>
+        </ul>
+
+        <span class="pill space-top">
+          <p class="pill-item">Tecnologias utilizadas nesse site:</p>
+        </span>
+      </div>
+    </div>
+
+
+    <div class="main">
+      <div id="contentId" class="content">
+
+        <div class="task task-header">
+          <input type="text" id="inputId" class="task-input" />
+          <button type="submit" class="task-button" onclick="addItem(document.getElementById('inputId').value)">Adicionar</button>
+        </div>
+
+        <div class="task task-item" draggable="true">
+          <p class="task-text">HTML 5</p>
+        </div>
+
+        <div class="task task-item" draggable="true">
+          <p class="task-text">CSS 3</p>
+        </div>
+
+        <div class="task task-item" draggable="true">
+          <p class="task-text">JavaScript</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+<script src='./HTMLbuild.js'></script>
+<script src='./index.js' type="module"></script>
+
+</html>
+
+<!-- https://pencilandpaper.io/wp-content/uploads/2022/10/DD_Overview_Start.png -->
